@@ -1,25 +1,74 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Phaser Project Hub</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phaser 4 Labs | Hub</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
 </head>
 <body>
-
-    <h1>Phaser 3 Labs</h1>
-
-    <nav>
-        <ul>
-            <li>
-                <!-- Navega al HTML del juego de plataformas -->
-                <a href="./src/phaser-platform-game/platform-game.html">Platform Game</a>
-            </li>
-                <li>
-                    <!-- Navega al HTML del tutorial de escenas -->
-                    <a href="./src/tutorial/tutorial.html">Tutorial de Escenas simples</a>
-                </li>
-        </ul>
-    </nav>
-
+  <section class="hero is-link">
+    <div class="hero-body">
+      <p class="title">Phaser 4 Labs</p>
+      <p class="subtitle">Presentation Index</p>
+    </div>
+  </section>
+  <main class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        <!-- Section: Main Project -->
+        <div class="column is-12">
+          <h2 class="title is-4">Main Project</h2>
+        </div>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-content">
+              <p class="title is-5">Platform Game</p>
+              <p class="subtitle is-6">Platform game inspired by Chapter 16 Eloquent JavaScript</p>
+              <a href="./src/phaser-platform-game/platform-game.html" class="button is-link is-fullwidth">Play</a>
+            </div>
+          </div>
+        </div>
+        <div class="column is-12">
+          <hr>
+          <h2 class="title is-4">Tutorials</h2>
+        </div>
+        <!-- Category: Scenes -->
+        <div class="column is-4">
+          <div class="notification is-info is-light">
+            <p class="title is-5">Scenes</p>
+            <p class="content">Management and life cycle of game scenes.</p>
+            <a href="./src/tutorial/tutorial.html" class="button is-info">View Tutorial</a>
+          </div>
+        </div>
+        <!-- Category: GameObjects -->
+        <div class="column is-4">
+          <div class="notification is-primary is-light">
+            <p class="title is-5">Game Objects</p>
+            <p class="content">Visual elements and basic shapes.</p>
+            <div class="buttons">
+              <a href="./src/game-objects-examples/basic-rectangle/basic-rectangle.html" class="button is-primary is-small">Basic Rectangle</a>
+              <a href="./src/game-objects-examples/set-origin/set-origin.html" class="button is-primary is-small">Set Origin</a>
+            </div>
+          </div>
+        </div>
+        <!-- Category: Physics -->
+        <div class="column is-4">
+          <div class="notification is-warning is-light">
+            <p class="title is-5">Physics</p>
+            <p class="content">Collisions and dynamic movement systems.</p>
+            <button class="button is-warning" disabled>Coming Soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Phaser 4 Labs</strong> by Jose Angel Portillo, Alejandro Feo, and Kyliam Chinea.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
