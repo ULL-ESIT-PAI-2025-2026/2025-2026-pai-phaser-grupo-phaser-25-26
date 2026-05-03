@@ -24,8 +24,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        platformGame: resolve(__dirname, 'src/platform-game/platform-game.html'),
+        platformGame: resolve(__dirname, 'src/phaser-platform-game/platform-game.html'),
         tutorial: resolve(__dirname, 'src/tutorial/tutorial.html'),
+        rectangleExample: resolve(__dirname, 'src/game-objects-examples/basic-rectangle/basic-rectangle.html'),
+        setOriginExample: resolve(__dirname, 'src/game-objects-examples/set-origin/set-origin.html'),
+
       },
     },
   },
