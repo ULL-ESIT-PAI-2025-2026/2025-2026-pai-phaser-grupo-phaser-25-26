@@ -22,19 +22,29 @@ export class RectangleClass extends Phaser.GameObjects.Rectangle {
    * @param scene The Phaser scene where the rectangle will be created.
    */
   constructor(scene: Phaser.Scene) {
-    const midX: number = scene.scale.width / 2;
-    const midY: number = scene.scale.height / 2 ;
-    super(
+    const divider: number = 2;
+    const midX: number = scene.scale.width / divider;
+    const midY: number = scene.scale.height / divider;
+    const rectWidth: number = 200;
+    const rectHeight: number = 100;
+    super(scene, midX, midY, rectWidth, rectHeight, ColorName.GREEN);
+    const centerOriginX: number = 0.5;
+    const centerOriginY: number = 0.5;
+    this.setOrigin(centerOriginX, centerOriginY);
+    scene.add.existing(this);
+    const markerRadius: number = 5;
+    const startAngle: number = 0;
+    const endAngle: number = 360;
+    const originMarker = new Phaser.GameObjects.Arc(
       scene, 
       midX, 
       midY, 
-      200, 
-      100, 
-      ColorName.GREEN
+      markerRadius, 
+      startAngle, 
+      endAngle, 
+      false, 
+      ColorName.RED
     );
-    this.setOrigin(0.5, 0.5);
-    scene.add.existing(this);
-    const originMarker = new Phaser.GameObjects.Arc(scene, midX, midY, 5, 0, 360, false, ColorName.RED);
     scene.add.existing(originMarker);
   }
 }
