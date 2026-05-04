@@ -11,8 +11,13 @@
  * @description Main scene class that manages the instantiation of 
  *              different rectangle game objects.
  */
-import * as Phaser from 'phaser';
 
+import * as Phaser from 'phaser';
+import { ColorName } from "../../../colors";
+
+/**
+ * @classdesc Main game scene that handles object movement and UI launching.
+ */
 export class MainScene extends Phaser.Scene {
   private cuadrado!: Phaser.GameObjects.Rectangle;
 
@@ -20,20 +25,44 @@ export class MainScene extends Phaser.Scene {
     super('MainScene');
   }
 
-  create() {
-    this.add.text(400, 50, 'Escena de Juego (Corriendo...)', { fontSize: '24px' }).setOrigin(0.5);
-    this.cuadrado = this.add.rectangle(100, 300, 50, 50, 0x00ff00);
+  /* Sets up the game objects and schedules the UI scene launch. */
+  create(): void {
+    const divider: number = 2;
+    const midX: number = this.scale.width / divider;
+    const textY: number = 50;
+    const fontSize: string = '24px';
+    const centerOrigin: number = 0.5;
+
+    this.add.text(midX, textY, 'Escena de Juego (Corriendo...)', { fontSize: fontSize })
+      .setOrigin(centerOrigin);
+
+    const spawnX: number = 100;
+    const spawnY: number = 300;
+    const size: number = 50;
+
+    this.cuadrado = this.add.rectangle(spawnX, spawnY, size, size, ColorName.GREEN);
+
+    const launchDelay: number = 2000;
+    const uiSceneKey: string = 'UIScene';
 
     // A los 2 segundos, lanzamos la UI sin cerrar esta escena
-    this.time.delayedCall(2000, () => {
+    this.time.delayedCall(launchDelay, () => {
       console.log('Lanzando la interfaz (Overlay)...');
-      this.scene.launch('UIScene'); 
+      this.scene.launch(uiSceneKey); 
     });
   }
 
-  update() {
+  /* Updates the square position every frame. */
+  update(): void {
+    const velocity: number = 2;
+    const worldBounds: number = 800;
+    const resetPosition: number = 0;
+
     // El cuadrado se mueve constantemente
-    this.cuadrado.x += 2;
-    if (this.cuadrado.x > 800) this.cuadrado.x = 0;
+    this.cuadrado.x += velocity;
+
+    if (this.cuadrado.x > worldBounds) {
+      this.cuadrado.x = resetPosition;
+    }
   }
 }

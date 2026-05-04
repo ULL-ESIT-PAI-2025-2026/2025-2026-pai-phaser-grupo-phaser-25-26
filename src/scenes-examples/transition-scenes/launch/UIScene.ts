@@ -13,19 +13,44 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from "../../../colors";
 
+/**
+ * @classdesc Scene representing the user interface overlay.
+ */
 export class UIScene extends Phaser.Scene {
   constructor() {
     super('UIScene');
   }
 
-  create() {
-    // Dibujamos un panel en la parte inferior
-    const panel = this.add.rectangle(400, 550, 800, 100, 0x000000, 0.7);
+  /* Creates the UI elements including the background panel and text. */
+  create(): void {
+    const divider: number = 2;
+    const midX: number = this.scale.width / divider;
     
-    this.add.text(400, 550, 'SCORE: 1000 - ¡Soy una UI lanzada con launch!', { 
-      fontSize: '28px', 
-      color: '#ffff00' // Recuerda siempre el '#' para el color
-    }).setOrigin(0.5);
+    // Configuración del panel
+    const panelY: number = 550;
+    const panelWidth: number = 800;
+    const panelHeight: number = 100;
+    const panelAlpha: number = 0.7;
+
+    const panel: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      midX, 
+      panelY, 
+      panelWidth, 
+      panelHeight, 
+      ColorName.BLACK, 
+      panelAlpha
+    );
+    
+    // Configuración del texto
+    const fontSize: string = '28px';
+    const textColor: string = 'yellow';
+    const centerOrigin: number = 0.5;
+
+    this.add.text(midX, panelY, 'SCORE: 1000 - ¡Soy una UI lanzada con launch!', { 
+      fontSize: fontSize, 
+      color: textColor 
+    }).setOrigin(centerOrigin);
   }
 }
