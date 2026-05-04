@@ -28,6 +28,6 @@ export class MainScene extends Phaser.Scene {
   /*Creates the game objects once the scene is initialized.*/
   public create() {
     new RectangleClass(this); // Rectangulo mediante herencia
-    // const rectFunc = createRectangle(this); // Rectangulo por instancia
+    // const rectangleFunc = createRectangle(this); // Rectangulo por instancia
   }
 }

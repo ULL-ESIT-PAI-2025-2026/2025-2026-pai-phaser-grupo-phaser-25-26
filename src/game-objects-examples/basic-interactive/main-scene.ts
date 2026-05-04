@@ -13,19 +13,17 @@
  */
 
 import * as Phaser from 'phaser';
-import { RectangleClass } from './rectangle-dot-class';
-
+import { RectangleClass } from './interactive-rectangle-class';
 /**
  * Represents the primary game scene.
  */
 export class MainScene extends Phaser.Scene {
-  /* Initializes the scene with a unique key.*/
   constructor() {
     super('MainScene');
   }
 
   /*Creates the game objects once the scene is initialized.*/
   public create() {
-    new RectangleClass(this); // Rectangulo mediante herencia
+    new RectangleClass(this);
   }
 }

@@ -24,7 +24,7 @@ function startGame() {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
-    parent: 'image-app',
+    parent: 'rectangle-interactive-app',
     scene: [MainScene],
     backgroundColor: ColorName.CYAN,
   };
