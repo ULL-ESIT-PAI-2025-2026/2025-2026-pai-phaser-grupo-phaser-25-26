@@ -22,10 +22,14 @@ export class ImageClass extends Phaser.GameObjects.Image {
    * @param texture The key of the preloaded texture.
    */
   constructor(scene: Phaser.Scene, texture: string) {
-    const screenWidth: number = scene.scale.width;
-    const screenHeight: number = scene.scale.height;
-    super(scene, screenWidth / 2, screenHeight / 2, texture);
-    this.setOrigin(0.5, 0.5);
+    const divider: number = 2;
+    const midX: number = scene.scale.width / divider;
+    const midY: number = scene.scale.height / divider;
+    super(scene, midX, midY, texture);
+    const centerOrigin: number = 0.5;
+    const defaultScale: number = 1.5;
+    this.setOrigin(centerOrigin, centerOrigin);
+    this.setScale(defaultScale);
     scene.add.existing(this);
   }
 }

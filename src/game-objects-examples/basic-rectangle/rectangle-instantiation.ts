@@ -21,16 +21,20 @@ import { ColorName } from "../../colors";
  * @returns The newly created rectangle game object.
  */
 export function createRectangle(scene: Phaser.Scene): Phaser.GameObjects.Rectangle {
-  const midX: number = scene.scale.width / 2;
-  const midY: number = scene.scale.height / 2;
-  const rect: Phaser.GameObjects.Rectangle = new Phaser.GameObjects.Rectangle(
+  const divider: number = 2;
+  const midX: number = scene.scale.width / divider;
+  const midY: number = scene.scale.height / divider;
+  const rectangleWidth: number = 200;
+  const rectangleHeight: number = 100;
+  const centerOrigin: number = 0.5;
+  const rectangle: Phaser.GameObjects.Rectangle = new Phaser.GameObjects.Rectangle(
     scene, 
     midX, 
     midY, 
-    200, 
-    100, 
+    rectangleWidth, 
+    rectangleHeight, 
     ColorName.RED
   );
-  rect.setOrigin(0.5);
-  return scene.add.existing(rect);
+  rectangle.setOrigin(centerOrigin);
+  return scene.add.existing(rectangle);
 }

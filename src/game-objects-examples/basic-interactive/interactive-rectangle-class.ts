@@ -7,15 +7,15 @@
  * @author Jose Angel Portillo Garcia
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
- * @since Apr 29 2026
- * @description Class representing a custom centered rectangle with an origin marker.
+ * @since May 04 2026
+ * @description Class representing a centered rectangle that responds to touch events.
  */
 
 import * as Phaser from 'phaser';
 import { ColorName } from "../../colors";
 
 /**
- * A custom rectangle game object centered on the screen.
+ * A custom rectangle game object that prints a message when touched.
  */
 export class RectangleClass extends Phaser.GameObjects.Rectangle {
   /**
@@ -25,18 +25,26 @@ export class RectangleClass extends Phaser.GameObjects.Rectangle {
     const divider: number = 2;
     const midX: number = scene.scale.width / divider;
     const midY: number = scene.scale.height / divider;
-    const defaultWidth: number = 200;
-    const defaultHeight: number = 100;
+    const rectWidth: number = 200;
+    const rectHeight: number = 100;
     super(
       scene, 
       midX, 
       midY, 
-      defaultWidth, 
-      defaultHeight, 
+      rectWidth, 
+      rectHeight, 
       ColorName.GREEN
     );
     const centerOrigin: number = 0.5;
     this.setOrigin(centerOrigin, centerOrigin);
+    this.setInteractive();
+    this.on('pointerdown', () => {
+      console.log('touched!');
+    });
+    // Manera alternativa
+  // this.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+  //   console.log('touched!');
+  // });
     scene.add.existing(this);
   }
 }
