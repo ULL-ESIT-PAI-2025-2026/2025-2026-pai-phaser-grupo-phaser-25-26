@@ -18,12 +18,14 @@ import * as Phaser from 'phaser';
  * Represents the primary game scene.
  */
 export class StatesDemo extends Phaser.Scene {
+  private cuadrado!: Phaser.GameObjects.Rectangle;
 
   constructor() { 
     super('StatesDemo'); 
   }
 
   create() {
+    this.cuadrado = this.add.rectangle(100, 400, 50, 50, 0x00ff00);
     this.add.text(400, 200, 'Observa el comportamiento de', { fontSize: '32px' }).setOrigin(0.5);
     this.add.text(400, 300, '1 PAUSE, RESUME', { fontSize: '32px' }).setOrigin(0.5);
     this.add.text(400, 350, '2 SLEEP y WAKE', { fontSize: '32px' }).setOrigin(0.5);
@@ -51,5 +53,9 @@ export class StatesDemo extends Phaser.Scene {
       console.log('WAKE: Todo vuelve exactamente como estaba');
       this.scene.wake(); 
     }, 8000);
+  }
+  update() {
+    this.cuadrado.x += 2;
+    if (this.cuadrado.x > 800) this.cuadrado.x = 0;
   }
 }
