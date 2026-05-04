@@ -28,7 +28,7 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'main-sprites', 0);
     scene.add.existing(this);
-    scene.physics.add.existing(this, true); 
+    scene.physics.add.existing(this, true);
     this.setDisplaySize(32, 32);
     this.setTint(ColorName.GRAY);
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();

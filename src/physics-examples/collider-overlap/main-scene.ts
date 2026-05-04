@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -23,7 +23,9 @@ export class ColliderOverlapDemo extends Phaser.Scene {
     super('ColliderOverlapDemo');
   }
 
-  /* Initializes scene objects and sets up physics interactions. */
+  /**
+   * @desc Creates collider and overlap examples side by side for comparison.
+   */
   create(): void {
     const textY: number = 50;
     const leftColumnX: number = 200;
@@ -36,58 +38,52 @@ export class ColliderOverlapDemo extends Phaser.Scene {
     this.add.text(rightColumnX, textY, 'Overlap (Atraviesa)', { fontSize: fontSize })
       .setOrigin(centerOrigin);
 
-    // Configuración de los suelos
     const groundY: number = 400;
     const groundWidth: number = 200;
     const groundHeight: number = 20;
     const isStatic: boolean = true;
 
     const suelo1: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      leftColumnX, 
-      groundY, 
-      groundWidth, 
-      groundHeight, 
+      leftColumnX,
+      groundY,
+      groundWidth,
+      groundHeight,
       ColorName.GRAY
     );
     const suelo2: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      rightColumnX, 
-      groundY, 
-      groundWidth, 
-      groundHeight, 
+      rightColumnX,
+      groundY,
+      groundWidth,
+      groundHeight,
       ColorName.GRAY
     );
 
     this.physics.add.existing(suelo1, isStatic);
     this.physics.add.existing(suelo2, isStatic);
 
-    // Configuración de las cajas
     const boxSpawnY: number = 100;
     const boxSize: number = 40;
 
     const cajaCollider: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      leftColumnX, 
-      boxSpawnY, 
-      boxSize, 
-      boxSize, 
+      leftColumnX,
+      boxSpawnY,
+      boxSize,
+      boxSize,
       ColorName.GREEN
     );
     const cajaOverlap: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      rightColumnX, 
-      boxSpawnY, 
-      boxSize, 
-      boxSize, 
+      rightColumnX,
+      boxSpawnY,
+      boxSize,
+      boxSize,
       ColorName.YELLOW
     );
 
     this.physics.add.existing(cajaCollider);
     this.physics.add.existing(cajaOverlap);
 
-    // --- Física: Collider vs Overlap ---
-    
-    // Collider: Detiene físicamente el movimiento del objeto al impactar
     this.physics.add.collider(cajaCollider, suelo1);
 
-    // Overlap: Permite que el objeto atraviese, ejecutando un callback al detectar la intersección
     this.physics.add.overlap(cajaOverlap, suelo2, () => {
       suelo2.setFillStyle(ColorName.RED);
     });

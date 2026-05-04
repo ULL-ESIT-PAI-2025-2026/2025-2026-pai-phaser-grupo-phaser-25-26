@@ -27,11 +27,11 @@ export class LevelBuilder {
   /**
    * @desc Constructs a complete level from tilemap string data.
    * Each character represents a different game object type.
-   * 
+   *
    * @param scene - The Phaser scene where level objects are created.
    * @param levelData - Array of strings representing the level tilemap.
    * @returns An object containing all built level components (player, groups, etc).
-   * 
+   *
    * @example
    * levelData = [
    *   '#####',
@@ -39,14 +39,14 @@ export class LevelBuilder {
    *   '#E V#',
    *   '#####'
    * ]
-   * // '@' = Player, '#' = Wall, 'o' = Coin, '!' = Lava, etc.
+   *
    */
   static build(scene: Phaser.Scene, levelData: string[]) {
     const wallGroup = scene.physics.add.staticGroup();
     const coinGroup = scene.physics.add.staticGroup();
-    const staticLavaGroup = scene.physics.add.staticGroup(); 
+    const staticLavaGroup = scene.physics.add.staticGroup();
     const exitGroup = scene.physics.add.staticGroup();
-    const fallingLavaGroup = scene.physics.add.group(); 
+    const fallingLavaGroup = scene.physics.add.group();
 
     let playerCharacter!: Player;
 
@@ -71,25 +71,22 @@ export class LevelBuilder {
       });
     });
 
-    // Calculate level boundaries
     const mapWidthInPixels = levelData[0].length * 32;
     const mapHeightInPixels = levelData.length * 32;
 
-    // Set physics world boundaries
     scene.physics.world.setBounds(0, 0, mapWidthInPixels, mapHeightInPixels);
-    
-    // Configure camera to follow player
+
     if (playerCharacter) {
       scene.cameras.main.setBounds(0, 0, mapWidthInPixels, mapHeightInPixels);
       scene.cameras.main.startFollow(playerCharacter, true, 0.08, 0.08);
     }
 
-    return { 
-      player: playerCharacter, 
-      walls: wallGroup, 
-      coins: coinGroup, 
-      lavaStatic: staticLavaGroup, 
-      lavaFallingGroup: fallingLavaGroup, 
+    return {
+      player: playerCharacter,
+      walls: wallGroup,
+      coins: coinGroup,
+      lavaStatic: staticLavaGroup,
+      lavaFallingGroup: fallingLavaGroup,
       exits: exitGroup
     };
   }

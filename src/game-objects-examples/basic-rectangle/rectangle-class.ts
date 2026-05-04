@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Class representing a custom centered rectangle with an origin marker.
+ * @desc Class representing a custom centered rectangle with an origin marker.
  */
 
 import * as Phaser from 'phaser';
@@ -28,11 +28,11 @@ export class RectangleClass extends Phaser.GameObjects.Rectangle {
     const defaultWidth: number = 200;
     const defaultHeight: number = 100;
     super(
-      scene, 
-      midX, 
-      midY, 
-      defaultWidth, 
-      defaultHeight, 
+      scene,
+      midX,
+      midY,
+      defaultWidth,
+      defaultHeight,
       ColorName.GREEN
     );
     const centerOrigin: number = 0.5;

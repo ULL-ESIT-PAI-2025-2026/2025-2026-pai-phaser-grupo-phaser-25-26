@@ -8,22 +8,20 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @desc Main entry point for the Phaser game. Configures engine settings, 
+ * @desc Main entry point for the Phaser game. Configures engine settings,
  * physics world, and registers all game scenes.
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../colors';
 
-// Importación de Escenas de Menú y UI
 import StartScene from './scenes/StartScene';
 import UIScene from './scenes/UIScene';
 
-// Importación de Escenas de Lógica de Juego
 import LevelScenes1 from './scenes/Level1Scenes';
 import LevelScenes2 from './scenes/Level2Scenes';
 import GameScene from './scenes/GameScene';
 
-// Importación de Escenas de Demostración de Físicas
 import Physics1 from './scenes/Physics1';
 import Physics2 from './scenes/Physics2';
 import Physics3 from './scenes/Physics3';
@@ -39,21 +37,17 @@ const gameConfiguration: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  backgroundColor: '#222',
-  
+  backgroundColor: ColorName.BLACK,
+
   physics: {
     default: 'arcade',
     arcade: {
       gravity: { y: 300, x: 0 },
-      // Debug mode enables AABB (Axis-Aligned Bounding Boxes) visualization.
-      debug: true 
+
+      debug: true
     }
   },
 
-  /**
-   * The scene array defines which scenes are available to the SceneManager.
-   * The first scene in the array (StartScene) is automatically started.
-   */
   scene: [
     StartScene,
     LevelScenes1,
@@ -68,7 +62,4 @@ const gameConfiguration: Phaser.Types.Core.GameConfig = {
   ]
 };
 
-/**
- * Initialization of the Phaser Game engine.
- */
 new Phaser.Game(gameConfiguration);

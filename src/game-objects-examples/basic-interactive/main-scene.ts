@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -22,7 +22,6 @@ export class MainScene extends Phaser.Scene {
     super('MainScene');
   }
 
-  /*Creates the game objects once the scene is initialized.*/
   public create() {
     new RectangleClass(this);
   }

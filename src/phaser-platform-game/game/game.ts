@@ -13,6 +13,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 import GameScene from './scenes/GameScene';
 import UIScene from './scenes/UIScene';
 import PauseScene from './scenes/PauseScene';
@@ -21,20 +22,16 @@ import MusicScene from './scenes/music_scene';
 /**
  * Initializes and starts the Phaser game with the specified container element.
  * Configures the game engine, physics world, and scene management.
- * 
+ *
  * @param containerId - The HTML element ID where the game canvas will be rendered.
  */
 export function StartGame(containerId: string): void {
-  /**
-   * Global configuration object for the Phaser game instance.
-   * Defines renderer type, dimensions, physics properties, and scene order.
-   */
   const gameConfiguration: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     parent: containerId,
-    backgroundColor: '#66CDAA',
+    backgroundColor: ColorName.SKY_BLUE,
     physics: {
       default: 'arcade',
       arcade: {

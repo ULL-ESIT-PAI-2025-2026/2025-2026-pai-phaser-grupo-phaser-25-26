@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc A scene demonstrating how to enable the physics engine for a basic
@@ -21,16 +22,16 @@ export default class Physics1 extends Phaser.Scene {
   /**
    * @desc Instantiates the basic physics demonstration scene with its unique Phaser key.
    */
-  constructor() { 
-    super('Physics1'); 
+  constructor() {
+    super('Physics1');
   }
 
   /**
-   * @desc Initializes the scene by creating a rectangle and injecting a dynamic 
+   * @desc Initializes the scene by creating a rectangle and injecting a dynamic
    * physics body into it, causing it to fall due to gravity.
    */
   create(): void {
-    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, 0x00ff00);
+    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, ColorName.LIME);
     this.physics.add.existing(playerRectangle);
   }
 }

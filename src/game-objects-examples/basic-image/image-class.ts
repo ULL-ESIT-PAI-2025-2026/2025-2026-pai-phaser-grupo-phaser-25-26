@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since May 03 2026
- * @description Class representing a custom centered image game object.
+ * @desc Class representing a custom centered image game object.
  */
 
 import * as Phaser from 'phaser';

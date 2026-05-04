@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -25,7 +25,6 @@ export class MainScene extends Phaser.Scene {
     super('MainScene');
   }
 
-  /* Sets up the game objects and schedules the UI scene launch. */
   create(): void {
     const divider: number = 2;
     const midX: number = this.scale.width / divider;
@@ -45,20 +44,20 @@ export class MainScene extends Phaser.Scene {
     const launchDelay: number = 2000;
     const uiSceneKey: string = 'UIScene';
 
-    // A los 2 segundos, lanzamos la UI sin cerrar esta escena
     this.time.delayedCall(launchDelay, () => {
       console.log('Lanzando la interfaz (Overlay)...');
-      this.scene.launch(uiSceneKey); 
+      this.scene.launch(uiSceneKey);
     });
   }
 
-  /* Updates the square position every frame. */
+  /**
+   * @desc Moves the rectangle horizontally across the screen each frame.
+   */
   update(): void {
     const velocity: number = 2;
     const worldBounds: number = 800;
     const resetPosition: number = 0;
 
-    // El cuadrado se mueve constantemente
     this.cuadrado.x += velocity;
 
     if (this.cuadrado.x > worldBounds) {

@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc A scene demonstrating how to create physical collisions
@@ -21,8 +22,8 @@ export default class Physics2 extends Phaser.Scene {
   /**
    * @desc Instantiates the collider demonstration scene with its unique Phaser key.
    */
-  constructor() { 
-    super('Physics2'); 
+  constructor() {
+    super('Physics2');
   }
 
   /**
@@ -30,10 +31,10 @@ export default class Physics2 extends Phaser.Scene {
    * a collider to resolve physical intersections between them.
    */
   create(): void {
-    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, 0x555555);
+    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, ColorName.GRAY);
     this.physics.add.existing(groundPlatform, true);
 
-    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, 0x00ff00);
+    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, ColorName.LIME);
     this.physics.add.existing(playerRectangle);
 
     this.physics.add.collider(playerRectangle, groundPlatform);

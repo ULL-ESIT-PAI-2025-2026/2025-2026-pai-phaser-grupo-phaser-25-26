@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main entry point for the Phaser game. Configures engine settings, 
+ * @desc Main entry point for the Phaser game. Configures engine settings,
  *              registers all game scenes.
  */
 import * as Phaser from 'phaser';
@@ -21,8 +21,8 @@ function startGame() {
     width: 800,
     height: 600,
     parent: 'game-container',
-    // La primera es la que arranca; la segunda espera a ser "lanzada"
-    scene: [MainScene, UIScene], 
+
+    scene: [MainScene, UIScene],
   };
   new Phaser.Game(config);
 }

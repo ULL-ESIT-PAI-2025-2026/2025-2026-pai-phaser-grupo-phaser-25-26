@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc A scene demonstrating how to apply a bounce coefficient to a dynamic physics body,
@@ -21,8 +22,8 @@ export default class Physics3 extends Phaser.Scene {
   /**
    * @desc Instantiates the bounce demonstration scene with its unique Phaser key.
    */
-  constructor() { 
-    super('Physics3'); 
+  constructor() {
+    super('Physics3');
   }
 
   /**
@@ -30,10 +31,10 @@ export default class Physics3 extends Phaser.Scene {
    * the physical restitution (bounce) upon collision.
    */
   create(): void {
-    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, 0x555555);
+    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, ColorName.GRAY);
     this.physics.add.existing(groundPlatform, true);
 
-    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, 0x00ff00);
+    const playerRectangle: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 100, 50, 50, ColorName.LIME);
     this.physics.add.existing(playerRectangle);
 
     const playerPhysicsBody = playerRectangle.body as Phaser.Physics.Arcade.Body;

@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -23,7 +23,9 @@ export class DinamicoEstaticoDemo extends Phaser.Scene {
     super('DinamicoEstaticoDemo');
   }
 
-  /* Initializes the scene elements and physics objects.*/
+  /**
+   * @desc Creates dynamic and static physics bodies to demonstrate their differences.
+   */
   create(): void {
     const divider: number = 2;
     const midX: number = this.scale.width / divider;
@@ -31,29 +33,29 @@ export class DinamicoEstaticoDemo extends Phaser.Scene {
     const fontSize: string = '24px';
     const centerOrigin: number = 0.5;
     this.add.text(midX, textY, 'Izquierda: Dinámico | Derecha: Estático', { fontSize: fontSize }).setOrigin(centerOrigin);
-    // Configuración común de las cajas
+
     const boxY: number = 200;
     const boxSize: number = 50;
     const dynamicBoxX: number = 200;
     const staticBoxX: number = 600;
-    // 1. OBJETO DINÁMICO (Se cae al vacío)
+
     const cajaDinamica: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      dynamicBoxX, 
-      boxY, 
-      boxSize, 
-      boxSize, 
+      dynamicBoxX,
+      boxY,
+      boxSize,
+      boxSize,
       ColorName.RED
     );
     this.physics.add.existing(cajaDinamica);
-    // 2. OBJETO ESTÁTICO (Se queda flotando en el aire inamovible)
+
     const muroEstatico: Phaser.GameObjects.Rectangle = this.add.rectangle(
-      staticBoxX, 
-      boxY, 
-      boxSize, 
-      boxSize, 
+      staticBoxX,
+      boxY,
+      boxSize,
+      boxSize,
       ColorName.GRAY
     );
     const isStatic: boolean = true;
-    this.physics.add.existing(muroEstatico, isStatic); 
+    this.physics.add.existing(muroEstatico, isStatic);
   }
 }

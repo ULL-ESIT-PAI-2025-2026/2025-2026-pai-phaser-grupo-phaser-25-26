@@ -11,13 +11,12 @@
  * @desc Predefined color for the educational purpose of this project
  */
 
-
 /**
  * Enum for hexadecimal color constants compatible with Phaser (0xRRGGBB).
  * Organized by color tones following Google's TypeScript Style Guide.
  */
 export enum ColorName {
-  // --- ACHROMATIC (Grayscale) ---
+  // --- ACHROMATIC ---
   WHITE = 0xFFFFFF,
   SILVER = 0xC0C0C0,
   GRAY = 0x808080,

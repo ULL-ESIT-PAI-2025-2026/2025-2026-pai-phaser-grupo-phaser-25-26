@@ -34,19 +34,19 @@ export default class PauseScene extends Phaser.Scene {
   create(): void {
     const canvasWidth = this.scale.width;
     const canvasHeight = this.scale.height;
-    this.add.rectangle(canvasWidth / 2, canvasHeight / 2, canvasWidth, canvasHeight, 0x000000, 0.6);
-    this.add.text(canvasWidth / 2, canvasHeight / 2 - 50, 'PAUSA', { 
-      fontSize: '48px' 
+    this.add.rectangle(canvasWidth / 2, canvasHeight / 2, canvasWidth, canvasHeight, ColorName.BLACK, 0.6);
+    this.add.text(canvasWidth / 2, canvasHeight / 2 - 50, 'PAUSA', {
+      fontSize: '48px'
     }).setOrigin(0.5);
-    const resumeButton = this.add.text(canvasWidth / 2, canvasHeight / 2 + 50, 'RESUME (P)', { 
-      fontSize: '32px', 
-      color: `${ColorName.GREEN}` 
+    const resumeButton = this.add.text(canvasWidth / 2, canvasHeight / 2 + 50, 'RESUME (P)', {
+      fontSize: '32px',
+      color: `${ColorName.GREEN}`
     })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
-    const restartButton = this.add.text(canvasWidth / 2, canvasHeight / 2 + 110, 'RESTART', { 
-      fontSize: '32px', 
-      color: `${ColorName.RED}` 
+    const restartButton = this.add.text(canvasWidth / 2, canvasHeight / 2 + 110, 'RESTART', {
+      fontSize: '32px',
+      color: `${ColorName.RED}`
     })
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true });
@@ -69,7 +69,7 @@ export default class PauseScene extends Phaser.Scene {
   private restartGameplay(): void {
     gameState.resetGame();
     this.scene.stop('GameScene');
-    this.scene.start('GameScene'); 
+    this.scene.start('GameScene');
     this.scene.stop();
   }
 }

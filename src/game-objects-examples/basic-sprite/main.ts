@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main entry point for the Phaser game. Configures engine settings, 
+ * @desc Main entry point for the Phaser game. Configures engine settings,
  *              registers all game scenes.
  */
 

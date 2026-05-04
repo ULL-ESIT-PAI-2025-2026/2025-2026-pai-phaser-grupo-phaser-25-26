@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc Main menu scene that allows the user to select and launch
@@ -31,12 +32,12 @@ export default class StartScene extends Phaser.Scene {
   create(): void {
     this.add.text(400, 50, 'MENÚ PRINCIPAL', {
       fontSize: '32px',
-      color: '#ffffff'
+      color: `${ColorName.WHITE}`
     }).setOrigin(0.5);
 
     this.add.text(400, 120, '--- ESCENAS ---', {
       fontSize: '24px',
-      color: '#ffff00'
+      color: `${ColorName.YELLOW}`
     }).setOrigin(0.5);
 
     this.createNavigationButton(170, '1. Cambio de escena', 'LevelScenes1');
@@ -44,7 +45,7 @@ export default class StartScene extends Phaser.Scene {
 
     this.add.text(400, 280, '--- FÍSICAS ---', {
       fontSize: '24px',
-      color: 'cyan'
+      color: `${ColorName.CYAN}`
     }).setOrigin(0.5);
 
     this.createNavigationButton(330, '3. Gravedad', 'Physics1');
@@ -63,7 +64,7 @@ export default class StartScene extends Phaser.Scene {
   private createNavigationButton(yPosition: number, buttonText: string, targetSceneName: string): void {
     const interactiveButton: Phaser.GameObjects.Text = this.add.text(400, yPosition, buttonText, {
       fontSize: '20px',
-      backgroundColor: 'black',
+      backgroundColor: `${ColorName.BLACK}`,
       padding: { x: 10, y: 5 }
     })
     .setOrigin(0.5)

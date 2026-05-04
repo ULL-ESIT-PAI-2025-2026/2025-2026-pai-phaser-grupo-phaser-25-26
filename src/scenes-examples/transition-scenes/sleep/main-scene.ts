@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -21,11 +21,10 @@ import { ColorName } from "../../../colors";
 export class StatesDemo extends Phaser.Scene {
   private cuadrado!: Phaser.GameObjects.Rectangle;
 
-  constructor() { 
-    super('StatesDemo'); 
+  constructor() {
+    super('StatesDemo');
   }
 
-  /* Initializes game objects and schedules scene state transitions. */
   create(): void {
     const spawnX: number = 100;
     const spawnY: number = 400;
@@ -49,32 +48,30 @@ export class StatesDemo extends Phaser.Scene {
     const delaySleep: number = 6000;
     const delayWake: number = 8000;
 
-    // A los 2 segundos -> PAUSA
     setTimeout(() => {
       console.log('PAUSA: El tiempo se congela, pero seguimos viendo el cuadrado');
-      this.scene.pause(); 
+      this.scene.pause();
     }, delayPause);
 
-    // A los 4 segundos -> REANUDA
     setTimeout(() => {
       console.log('RESUME: El tiempo vuelve a fluir');
-      this.scene.resume(); 
+      this.scene.resume();
     }, delayResume);
 
-    // A los 6 segundos -> DUERME
     setTimeout(() => {
       console.log('SLEEP: La pantalla se queda negra, la escena descansa');
-      this.scene.sleep(); 
+      this.scene.sleep();
     }, delaySleep);
 
-    // A los 8 segundos -> DESPIERTA
     setTimeout(() => {
       console.log('WAKE: Todo vuelve exactamente como estaba');
-      this.scene.wake(); 
+      this.scene.wake();
     }, delayWake);
   }
 
-  /* Updates the rectangle position based on a fixed velocity. */
+  /**
+   * @desc Moves the rectangle horizontally and resets at screen edge.
+   */
   update(): void {
     const velocity: number = 2;
     const limitX: number = 800;

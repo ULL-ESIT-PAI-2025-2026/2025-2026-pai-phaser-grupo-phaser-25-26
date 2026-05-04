@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -18,27 +18,34 @@ import * as Phaser from 'phaser';
  * @classdesc Scene demonstrating the core Phaser lifecycle methods and their execution order.
  */
 export class LifecycleDemo extends Phaser.Scene {
-  constructor() { 
-    super('LifecycleDemo'); 
+  constructor() {
+    super('LifecycleDemo');
   }
 
-  /* Called when the scene is first initialized. Ideal for data setup. */
+  /**
+   * @desc First lifecycle phase: initializes variables and data.
+   */
   init(): void {
     console.log('1. INIT: Preparando el escenario (Variables y datos)');
   }
 
-  /* Used to load assets like images, audio, and spritesheets before the scene starts. */
+  /**
+   * @desc Second lifecycle phase: loads images and sounds.
+   */
   preload(): void {
     console.log('2. PRELOAD: Descargando imágenes y sonidos de internet');
   }
 
-  /* Called once preload is finished. Used to create game objects and physics. */
+  /**
+   * @desc Third lifecycle phase: creates game objects.
+   */
   create(): void {
     console.log('3. CREATE: Poniendo a los actores en el escenario');
   }
 
-  /* The main game loop. Runs approximately 60 times per second. */
+  /**
+   * @desc Fourth lifecycle phase: runs every frame (empty in this demo).
+   */
   update(): void {
-    // El motor de Phaser ejecuta este método constantemente para procesar lógica en tiempo real.
   }
 }

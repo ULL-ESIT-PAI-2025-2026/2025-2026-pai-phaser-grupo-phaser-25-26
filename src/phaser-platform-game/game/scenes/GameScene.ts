@@ -18,16 +18,19 @@ import { LevelBuilder } from '../builders/LevelBuilder';
 import { gameState } from '../state/GameState';
 import eventCenter from '../events/EventCenter';
 
-import MusicScene from  './music_scene'; 
+import MusicScene from  './music_scene';
 import Player from '../gameobjects/Player';
 import LavaFalling from '../gameobjects/LavaFalling';
 
+/**
+ * @classdesc Main gameplay scene managing platformer logic, physics collisions, and level progression.
+ */
 export default class GameScene extends Phaser.Scene {
   private playerCharacter!: Player;
   private wallGroup!: Phaser.Physics.Arcade.StaticGroup;
   private coinGroup!: Phaser.Physics.Arcade.StaticGroup;
   private staticLavaGroup!: Phaser.Physics.Arcade.StaticGroup;
-  private fallingLavaGroup!: Phaser.Physics.Arcade.Group; 
+  private fallingLavaGroup!: Phaser.Physics.Arcade.Group;
   private exitGroup!: Phaser.Physics.Arcade.StaticGroup;
   private gameTimerEvent?: Phaser.Time.TimerEvent;
   private isDead: boolean = false;
@@ -38,7 +41,7 @@ export default class GameScene extends Phaser.Scene {
 
   preload(): void {
     const repositoryBasePath = '/2025-2026-pai-phaser-joseangel-kyliam-alejandro/';
-    
+
     this.load.image('coin-texture', `${repositoryBasePath}assets/img/coin.png`);
     this.load.spritesheet('main-sprites', `${repositoryBasePath}assets/img/sprites.png`, {
       frameWidth: 16,
@@ -49,7 +52,7 @@ export default class GameScene extends Phaser.Scene {
       frameWidth: 24,
       frameHeight: 30
     });
-    
+
     this.load.on('filecomplete-spritesheet-main-sprites', () => {
       console.log('✅ Spritesheet cargado con éxito usando la ruta base de Vite');
     });
@@ -65,7 +68,7 @@ export default class GameScene extends Phaser.Scene {
     if (!this.scene.isActive('UIScene')) {
       this.scene.launch('UIScene');
     }
-    
+
     if (!this.scene.isActive('MusicScene')) {
       this.scene.launch('MusicScene');
     }
@@ -77,7 +80,7 @@ export default class GameScene extends Phaser.Scene {
     this.wallGroup = builtLevelObjects.walls;
     this.coinGroup = builtLevelObjects.coins;
     this.staticLavaGroup = builtLevelObjects.lavaStatic;
-    this.fallingLavaGroup = builtLevelObjects.lavaFallingGroup; 
+    this.fallingLavaGroup = builtLevelObjects.lavaFallingGroup;
     this.exitGroup = builtLevelObjects.exits;
 
     this.input.keyboard?.on('keydown-P', () => {
@@ -105,20 +108,20 @@ export default class GameScene extends Phaser.Scene {
 
   private setupCollisionHandlers(): void {
     this.physics.add.collider(this.playerCharacter, this.wallGroup);
-    
+
     this.physics.add.overlap(this.fallingLavaGroup, this.wallGroup, (lavaObject) => {
       const fallingLavaInstance = lavaObject as LavaFalling;
-      fallingLavaInstance.deactivate(); 
+      fallingLavaInstance.deactivate();
     });
-    
+
     this.physics.add.overlap(this.playerCharacter, this.coinGroup, (_, coin) => {
       coin.destroy();
-      gameState.addCoin(); 
+      gameState.addCoin();
       this.audioManager.playCoinSound();
     });
-    
+
     this.physics.add.overlap(this.playerCharacter, this.staticLavaGroup, () => this.handlePlayerDeath());
-    this.physics.add.overlap(this.playerCharacter, this.fallingLavaGroup, () => this.handlePlayerDeath()); 
+    this.physics.add.overlap(this.playerCharacter, this.fallingLavaGroup, () => this.handlePlayerDeath());
     this.physics.add.overlap(this.playerCharacter, this.exitGroup, () => this.handleLevelCompletion());
   }
 
@@ -131,7 +134,7 @@ export default class GameScene extends Phaser.Scene {
       console.log('Game Over - No vidas restantes');
       this.audioManager.stopBackgroundMusic();
       this.audioManager.playGameOverSound();
-      
+
       gameState.resetByDead();
       this.scene.restart();
     } else {
@@ -146,12 +149,12 @@ export default class GameScene extends Phaser.Scene {
 
     if (gameState.currentLevelIndex < LEVELS.length) {
       this.audioManager.playStageClearSound();
-      this.scene.restart(); 
+      this.scene.restart();
     } else {
       console.log('¡Juego completado!');
       this.audioManager.playWorldClearSound();
       gameState.resetGame();
-      this.scene.restart(); 
+      this.scene.restart();
     }
   }
 }

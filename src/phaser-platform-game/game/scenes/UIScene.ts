@@ -33,15 +33,15 @@ export default class UIScene extends Phaser.Scene {
    * @desc Initializes UI elements and registers event listeners for state updates.
    */
   create(): void {
-    this.livesDisplayText = this.add.text(20, 20, `Vidas: ${gameState.lives}`, { 
-      fontSize: '24px' 
+    this.livesDisplayText = this.add.text(20, 20, `Vidas: ${gameState.lives}`, {
+      fontSize: '24px'
     });
-    this.coinsDisplayText = this.add.text(20, 50, `Monedas: ${gameState.coins}`, { 
-      fontSize: '24px', 
-      color: `${ColorName.YELLOW}` 
+    this.coinsDisplayText = this.add.text(20, 50, `Monedas: ${gameState.coins}`, {
+      fontSize: '24px',
+      color: `${ColorName.YELLOW}`
     });
-    this.timerDisplayText = this.add.text(780, 20, `Tiempo: 00:00`, { 
-      fontSize: '24px' 
+    this.timerDisplayText = this.add.text(780, 20, `Tiempo: 00:00`, {
+      fontSize: '24px'
     }).setOrigin(1, 0);
     eventCenter.on('update-lives', (updatedLivesCount: number) => {
       this.livesDisplayText.setText(`Vidas: ${updatedLivesCount}`);

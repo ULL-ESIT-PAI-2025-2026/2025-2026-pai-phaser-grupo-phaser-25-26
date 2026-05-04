@@ -8,12 +8,15 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since May 04 2026
- * @description Main scene that delegates object logic to its classes.
+ * @desc Main scene that delegates object logic to its classes.
  */
 
 import * as Phaser from 'phaser';
 import { SpriteClass } from './sprite-class';
 
+/**
+ * @classdesc Represents the primary game scene.
+ */
 export class MainScene extends Phaser.Scene {
   constructor() {
     super('MainScene');

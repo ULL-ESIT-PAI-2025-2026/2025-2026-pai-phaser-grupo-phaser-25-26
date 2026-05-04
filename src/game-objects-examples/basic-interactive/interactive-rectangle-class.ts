@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since May 04 2026
- * @description Class representing a centered rectangle that responds to touch events.
+ * @desc Class representing a centered rectangle that responds to touch events.
  */
 
 import * as Phaser from 'phaser';
@@ -28,11 +28,11 @@ export class RectangleClass extends Phaser.GameObjects.Rectangle {
     const rectWidth: number = 200;
     const rectHeight: number = 100;
     super(
-      scene, 
-      midX, 
-      midY, 
-      rectWidth, 
-      rectHeight, 
+      scene,
+      midX,
+      midY,
+      rectWidth,
+      rectHeight,
       ColorName.GREEN
     );
     const centerOrigin: number = 0.5;
@@ -41,10 +41,7 @@ export class RectangleClass extends Phaser.GameObjects.Rectangle {
     this.on('pointerdown', () => {
       console.log('touched!');
     });
-    // Manera alternativa
-  // this.on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-  //   console.log('touched!');
-  // });
+
     scene.add.existing(this);
   }
 }

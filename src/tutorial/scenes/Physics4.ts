@@ -12,35 +12,31 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc A scene demonstrating how to capture keyboard input to control
  * a dynamic physics body, including horizontal movement and jumping logic.
  */
 export default class Physics4 extends Phaser.Scene {
-  /** * @desc The visual and physical representation of the player. 
-   */
   private playerRectangle!: Phaser.GameObjects.Rectangle;
-
-  /** * @desc Stores the keyboard cursor keys used for directional movement. 
-   */
   private cursorKeys!: Phaser.Types.Input.Keyboard.CursorKeys;
 
   /**
    * @desc Instantiates the player input demonstration scene with its unique Phaser key.
    */
-  constructor() { 
-    super('Physics4'); 
+  constructor() {
+    super('Physics4');
   }
 
   /**
    * @desc Initializes the environment, player, collisions, and keyboard input listening.
    */
   create(): void {
-    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, 0x555555);
+    const groundPlatform: Phaser.GameObjects.Rectangle = this.add.rectangle(400, 550, 800, 50, ColorName.GRAY);
     this.physics.add.existing(groundPlatform, true);
 
-    this.playerRectangle = this.add.rectangle(400, 100, 50, 50, 0x00ff00);
+    this.playerRectangle = this.add.rectangle(400, 100, 50, 50, ColorName.LIME);
     this.physics.add.existing(this.playerRectangle);
 
     this.physics.add.collider(this.playerRectangle, groundPlatform);

@@ -173,5 +173,5 @@ export default class MusicScene extends Phaser.Scene {
       loop: true,
       volume: MusicScene.BACKGROUND_VOLUME,
     });
-  } 
+  }
 }

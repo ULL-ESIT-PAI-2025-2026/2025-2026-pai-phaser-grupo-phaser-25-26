@@ -32,7 +32,6 @@ export default class Exit extends Phaser.Physics.Arcade.Sprite {
     this.setDisplaySize(32, 32);
     this.setTint(ColorName.BLUE);
 
-    // Synchronize physics body with visual dimensions after resize
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();
   }
 }

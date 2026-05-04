@@ -28,11 +28,10 @@ export default class Coin extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'coin-texture', 0);
     scene.add.existing(this);
-    scene.physics.add.existing(this, true); 
+    scene.physics.add.existing(this, true);
     this.setDisplaySize(20, 20);
     this.setTint(ColorName.YELLOW);
 
-    // Synchronize physics body with visual dimensions after resize
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();
   }
 }

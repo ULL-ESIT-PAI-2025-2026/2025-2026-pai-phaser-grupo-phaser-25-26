@@ -12,18 +12,14 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
- * @classdesc A core game scene that continuously updates a moving object 
+ * @classdesc A core game scene that continuously updates a moving object
  * and broadcasts custom events to a concurrently running User Interface scene.
  */
 export default class GameScene extends Phaser.Scene {
-  /** * @desc The visual representation of the player entity moving across the screen. 
-   */
   private playerRectangle!: Phaser.GameObjects.Rectangle;
-
-  /** * @desc The horizontal velocity applied to the player entity each frame. 
-   */
   private horizontalSpeed: number = 3;
 
   /**
@@ -38,7 +34,7 @@ export default class GameScene extends Phaser.Scene {
    */
   create(): void {
     const { height } = this.scale;
-    this.playerRectangle = this.add.rectangle(100, height / 2, 50, 50, 0x00ff00);
+    this.playerRectangle = this.add.rectangle(100, height / 2, 50, 50, ColorName.LIME);
 
     this.scene.launch('UIScene');
   }

@@ -32,13 +32,13 @@ export default class LavaFalling extends Phaser.Physics.Arcade.Sprite {
    * @param y - Vertical spawn position.
    */
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, 'main-sprites', 1); 
+    super(scene, x, y, 'main-sprites', 1);
     this.initialSpawnX = x;
     this.initialSpawnY = y;
     scene.add.existing(this);
-    scene.physics.add.existing(this, false); 
-    this.setDisplaySize(20, 32); 
-    this.setTint(ColorName.ORANGE); 
+    scene.physics.add.existing(this, false);
+    this.setDisplaySize(20, 32);
+    this.setTint(ColorName.ORANGE);
     this.startFallingCycle();
   }
 
@@ -77,7 +77,7 @@ export default class LavaFalling extends Phaser.Physics.Arcade.Sprite {
     this.setActive(false);
     this.setVisible(false);
     const physicsBody = this.body as Phaser.Physics.Arcade.Body;
-    physicsBody.stop(); 
+    physicsBody.stop();
     physicsBody.setEnable(false);
   }
 

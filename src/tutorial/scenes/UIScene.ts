@@ -12,25 +12,15 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc UI Scene responsible for overlaying game metrics and interactive controls.
  */
 export default class UIScene extends Phaser.Scene {
-  /** * @desc Tracks the number of collisions detected. 
-   */
   private collisionCounter: number = 0;
-
-  /** * @desc Visual text representation of the collision counter. 
-   */
   private counterText!: Phaser.GameObjects.Text;
-
-  /** * @desc Interactive button to toggle the visibility of the counter. 
-   */
   private toggleVisibilityButton!: Phaser.GameObjects.Text;
-
-  /** * @desc Flag determining if the counter is currently visible on screen. 
-   */
   private isCounterVisible: boolean = true;
 
   /**
@@ -48,12 +38,12 @@ export default class UIScene extends Phaser.Scene {
 
     this.counterText = this.add.text(10, 10, 'Choques: 0', {
       fontSize: '24px',
-      color: '#ffffff'
+      color: `${ColorName.WHITE}`
     });
 
     this.toggleVisibilityButton = this.add.text(10, 50, 'Toggle contador', {
       fontSize: '20px',
-      backgroundColor: '#000',
+      backgroundColor: `${ColorName.BLACK}`,
       padding: { x: 10, y: 5 }
     }).setInteractive({ useHandCursor: true });
 
@@ -63,7 +53,7 @@ export default class UIScene extends Phaser.Scene {
     });
 
     const gameScene: Phaser.Scene = this.scene.get('GameScene');
-    
+
     if (gameScene) {
       gameScene.events.on('collision', this.incrementCollisionCounter, this);
     }

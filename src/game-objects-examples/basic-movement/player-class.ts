@@ -8,12 +8,15 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since May 04 2026
- * @description Player class that handles keyboard movement.
+ * @desc Player class that handles keyboard movement.
  */
 
 import * as Phaser from 'phaser';
 import { ColorName } from "../../colors";
 
+/**
+ * @classdesc Player class that handles keyboard movement.
+ */
 export class Player extends Phaser.GameObjects.Rectangle {
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
 
@@ -24,7 +27,7 @@ export class Player extends Phaser.GameObjects.Rectangle {
     const size: number = 50;
     super(scene, midX, midY, size, size, ColorName.GREEN);
     scene.add.existing(this);
-    // Inicializamos las teclas de dirección (flechas)
+
     if (scene.input.keyboard) {
       this.cursors = scene.input.keyboard.createCursorKeys();
     }

@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main scene class that manages the instantiation of 
+ * @desc Main scene class that manages the instantiation of
  *              different rectangle game objects.
  */
 
@@ -18,11 +18,13 @@ import * as Phaser from 'phaser';
  * @classdesc Scene that automatically transitions to another scene after a set time.
  */
 export class AutoChangeScene extends Phaser.Scene {
-  constructor() { 
-    super('AutoChangeScene'); 
+  constructor() {
+    super('AutoChangeScene');
   }
 
-  /* Displays a message and sets a timer to switch to the next scene. */
+  /**
+   * @desc Displays a message and transitions to the next scene after 3 seconds.
+   */
   create(): void {
     const textX: number = 400;
     const textY: number = 300;
@@ -35,9 +37,8 @@ export class AutoChangeScene extends Phaser.Scene {
     const changeDelay: number = 3000;
     const nextSceneKey: string = 'Escena2';
 
-    // Magia para la presentación: a los 3000 ms (3 segundos), cambia sola.
     setTimeout(() => {
-      this.scene.start(nextSceneKey); // Cierra esta y abre la siguiente
+      this.scene.start(nextSceneKey);
     }, changeDelay);
   }
 }

@@ -6,7 +6,7 @@
  *
  * @author Jose Angel Portillo Garcia
  * @since April 25, 2026
- * @description Vite configuration tailored to the specific project directory structure.
+ * @desc Vite configuration tailored to the specific project directory structure.
  */
 
 import {defineConfig} from 'vite';

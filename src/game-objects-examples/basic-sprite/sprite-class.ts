@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since May 04 2026
- * @description Class representing a sprite that manages its own animations.
+ * @desc Class representing a sprite that manages its own animations.
  */
 
 import * as Phaser from 'phaser';
@@ -34,9 +34,8 @@ export class SpriteClass extends Phaser.GameObjects.Sprite {
     this.initAnimations();
   }
 
-  /* Defines and starts the sprite's animations. */
   private initAnimations(): void {
-    // Verificamos si la animación ya existe globalmente para evitar errores
+
     if (!this.scene.anims.exists('walk')) {
       this.scene.anims.create({
         key: 'walk',
@@ -44,8 +43,8 @@ export class SpriteClass extends Phaser.GameObjects.Sprite {
           start: 0,
           end: 7
         }),
-        frameRate: 10, // Velocidad de la animación
-        repeat: -1 // Determina cuantas veces se va a repetir, si esta en -1 es un bucle
+        frameRate: 10,
+        repeat: -1
       });
     }
     this.play('walk');

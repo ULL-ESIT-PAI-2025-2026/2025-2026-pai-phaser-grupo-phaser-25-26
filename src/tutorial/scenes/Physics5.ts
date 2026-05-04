@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../colors';
 
 /**
  * @classdesc A scene demonstrating physics overlap between two game objects
@@ -21,8 +22,8 @@ export default class Physics5 extends Phaser.Scene {
   /**
    * @desc Instantiates the overlap demonstration scene with its unique Phaser key.
    */
-  constructor() { 
-    super('Physics5'); 
+  constructor() {
+    super('Physics5');
   }
 
   /**
@@ -30,18 +31,18 @@ export default class Physics5 extends Phaser.Scene {
    * setting up their physics properties, and defining the overlap callback behavior.
    */
   create(): void {
-    const playerShape: Phaser.GameObjects.Rectangle = this.add.rectangle(200, 300, 50, 50, 0x00ff00);
+    const playerShape: Phaser.GameObjects.Rectangle = this.add.rectangle(200, 300, 50, 50, ColorName.LIME);
     this.physics.add.existing(playerShape);
 
-    const coinShape: Phaser.GameObjects.Rectangle = this.add.rectangle(250, 400, 30, 30, 0xffff00);
+    const coinShape: Phaser.GameObjects.Rectangle = this.add.rectangle(250, 400, 30, 30, ColorName.YELLOW);
     this.physics.add.existing(coinShape);
-    
+
     const coinPhysicsBody = coinShape.body as Phaser.Physics.Arcade.Body;
-    coinPhysicsBody.setAllowGravity(false); 
+    coinPhysicsBody.setAllowGravity(false);
 
     this.physics.add.overlap(playerShape, coinShape, () => {
       console.log('Moneda recogida');
-      coinShape.destroy(); 
+      coinShape.destroy();
     });
 
     const playerPhysicsBody = playerShape.body as Phaser.Physics.Arcade.Body;

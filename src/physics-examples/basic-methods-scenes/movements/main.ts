@@ -8,7 +8,7 @@
  * @author Alejandro Feo Martin
  * @author Kyliam Gabriel Chinea Salcedo
  * @since Apr 29 2026
- * @description Main entry point for the Phaser game. Configures engine settings, 
+ * @desc Main entry point for the Phaser game. Configures engine settings,
  *              registers all game scenes.
  */
 
@@ -28,7 +28,7 @@ function startGame() {
     scene: [MovimientoBasicoDemo],
     backgroundColor: ColorName.BLACK,
     physics: {
-      default: 'arcade', 
+      default: 'arcade',
       arcade: {
         gravity: { y: 300, x: 0 },
         debug: true

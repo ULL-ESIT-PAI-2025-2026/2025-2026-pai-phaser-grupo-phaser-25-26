@@ -14,7 +14,7 @@
 import * as Phaser from 'phaser';
 
 /**
- * @classdesc A demonstration scene showcasing how to transition from one active 
+ * @classdesc A demonstration scene showcasing how to transition from one active
  * scene to another by stopping the current scene and starting a new one.
  */
 export default class LevelScenes1 extends Phaser.Scene {
