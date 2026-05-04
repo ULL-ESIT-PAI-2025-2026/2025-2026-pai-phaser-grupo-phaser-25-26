@@ -11,36 +11,85 @@
  * @description Main scene class that manages the instantiation of 
  *              different rectangle game objects.
  */
+
 import * as Phaser from 'phaser';
+import { ColorName } from "../../colors";
 
-
+/**
+ * @classdesc Scene demonstrating the difference between colliders and overlaps in physics.
+ */
 export class ColliderOverlapDemo extends Phaser.Scene {
-  constructor() { super('ColliderOverlapDemo'); }
+  constructor() {
+    super('ColliderOverlapDemo');
+  }
 
-  create() {
-    this.add.text(200, 50, 'Collider (Choca)', { fontSize: '20px' }).setOrigin(0.5);
-    this.add.text(600, 50, 'Overlap (Atraviesa)', { fontSize: '20px' }).setOrigin(0.5);
+  /* Initializes scene objects and sets up physics interactions. */
+  create(): void {
+    const textY: number = 50;
+    const leftColumnX: number = 200;
+    const rightColumnX: number = 600;
+    const fontSize: string = '20px';
+    const centerOrigin: number = 0.5;
 
-    // Creamos dos suelos estáticos
-    const suelo1 = this.add.rectangle(200, 400, 200, 20, 0x888888);
-    const suelo2 = this.add.rectangle(600, 400, 200, 20, 0x888888);
-    this.physics.add.existing(suelo1, true);
-    this.physics.add.existing(suelo2, true);
+    this.add.text(leftColumnX, textY, 'Collider (Choca)', { fontSize: fontSize })
+      .setOrigin(centerOrigin);
+    this.add.text(rightColumnX, textY, 'Overlap (Atraviesa)', { fontSize: fontSize })
+      .setOrigin(centerOrigin);
 
-    // Creamos dos cajas que caen
-    const cajaCollider = this.add.rectangle(200, 100, 40, 40, 0x00ff00);
-    const cajaOverlap = this.add.rectangle(600, 100, 40, 40, 0xffff00);
+    // Configuración de los suelos
+    const groundY: number = 400;
+    const groundWidth: number = 200;
+    const groundHeight: number = 20;
+    const isStatic: boolean = true;
+
+    const suelo1: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      leftColumnX, 
+      groundY, 
+      groundWidth, 
+      groundHeight, 
+      ColorName.GRAY
+    );
+    const suelo2: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      rightColumnX, 
+      groundY, 
+      groundWidth, 
+      groundHeight, 
+      ColorName.GRAY
+    );
+
+    this.physics.add.existing(suelo1, isStatic);
+    this.physics.add.existing(suelo2, isStatic);
+
+    // Configuración de las cajas
+    const boxSpawnY: number = 100;
+    const boxSize: number = 40;
+
+    const cajaCollider: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      leftColumnX, 
+      boxSpawnY, 
+      boxSize, 
+      boxSize, 
+      ColorName.GREEN
+    );
+    const cajaOverlap: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      rightColumnX, 
+      boxSpawnY, 
+      boxSize, 
+      boxSize, 
+      ColorName.YELLOW
+    );
+
     this.physics.add.existing(cajaCollider);
     this.physics.add.existing(cajaOverlap);
 
-    // --- LA MAGIA ---
-    // Collider: Frena físicamente el objeto
+    // --- Física: Collider vs Overlap ---
+    
+    // Collider: Detiene físicamente el movimiento del objeto al impactar
     this.physics.add.collider(cajaCollider, suelo1);
 
-    // Overlap: No lo frena, solo avisa cuando se cruzan
+    // Overlap: Permite que el objeto atraviese, ejecutando un callback al detectar la intersección
     this.physics.add.overlap(cajaOverlap, suelo2, () => {
-      // Cuando se tocan, pintamos el suelo de rojo para que la clase lo vea
-      suelo2.setFillStyle(0xff0000);
+      suelo2.setFillStyle(ColorName.RED);
     });
   }
 }

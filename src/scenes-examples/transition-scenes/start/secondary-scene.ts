@@ -15,16 +15,25 @@
 import * as Phaser from 'phaser';
 import { ColorName } from '../../../colors';
 
+/**
+ * @classdesc Second scene of the sequence, displayed after the auto-change.
+ */
 export class Escena2 extends Phaser.Scene {
   constructor() { 
     super('Escena2'); 
   }
 
-  create() {
+  /* Displays the welcome message with the specified style and color. */
+  create(): void {
+    const textX: number = 400;
+    const textY: number = 300;
+    const fontSize: string = '32px';
+    const centerOrigin: number = 0.5;
+    const hexBase: number = 16;
 
-    this.add.text(400, 300, '¡Bienvenido a la Escena 2!', { 
-      fontSize: '32px', 
-      color: '#' + ColorName.YELLOW.toString(16) // Convertimos el número a hexadecimal para usarlo como color CSS 
-    }).setOrigin(0.5);
+    this.add.text(textX, textY, '¡Bienvenido a la Escena 2!', { 
+      fontSize: fontSize, 
+      color: '#' + ColorName.YELLOW.toString(hexBase) 
+    }).setOrigin(centerOrigin);
   }
 }

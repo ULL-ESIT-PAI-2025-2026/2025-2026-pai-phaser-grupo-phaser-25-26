@@ -14,17 +14,30 @@
 
 import * as Phaser from 'phaser';
 
+/**
+ * @classdesc Scene that automatically transitions to another scene after a set time.
+ */
 export class AutoChangeScene extends Phaser.Scene {
   constructor() { 
     super('AutoChangeScene'); 
   }
 
-  create() {
-    this.add.text(400, 300, 'Escena 1 (Cambiando en 3...2...1...)', { fontSize: '32px' }).setOrigin(0.5);
+  /* Displays a message and sets a timer to switch to the next scene. */
+  create(): void {
+    const textX: number = 400;
+    const textY: number = 300;
+    const fontSize: string = '32px';
+    const centerOrigin: number = 0.5;
+
+    this.add.text(textX, textY, 'Escena 1 (Cambiando en 3...2...1...)', { fontSize: fontSize })
+      .setOrigin(centerOrigin);
+
+    const changeDelay: number = 3000;
+    const nextSceneKey: string = 'Escena2';
 
     // Magia para la presentación: a los 3000 ms (3 segundos), cambia sola.
     setTimeout(() => {
-      this.scene.start('Escena2'); // Cierra esta y abre la siguiente
-    }, 3000);
+      this.scene.start(nextSceneKey); // Cierra esta y abre la siguiente
+    }, changeDelay);
   }
 }

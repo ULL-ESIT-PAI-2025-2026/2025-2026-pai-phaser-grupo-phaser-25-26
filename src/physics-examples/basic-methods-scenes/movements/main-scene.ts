@@ -11,29 +11,56 @@
  * @description Main scene class that manages the instantiation of 
  *              different rectangle game objects.
  */
+
 import * as Phaser from 'phaser';
+import { ColorName } from "../../../colors";
 
+/**
+ * @classdesc Scene demonstrating basic arcade physics movement, world bounds, and bounce.
+ */
 export class MovimientoBasicoDemo extends Phaser.Scene {
-  constructor() { super('MovimientoBasicoDemo'); }
+  constructor() {
+    super('MovimientoBasicoDemo');
+  }
 
-  create() {
-    const pelota = this.add.rectangle(400, 300, 40, 40, 0x00ffff);
+  /* Initializes the physics-enabled object and configures its movement properties. */
+  public create(): void {
+    const divider: number = 2;
+    const midX: number = this.scale.width / divider;
+    const midY: number = this.scale.height / divider;
+    
+    const rectSize: number = 40;
+
+    const pelota: Phaser.GameObjects.Rectangle = this.add.rectangle(
+      midX, 
+      midY, 
+      rectSize, 
+      rectSize, 
+      ColorName.CYAN
+    );
+
     this.physics.add.existing(pelota);
 
+    // Casteamos el body para acceder a las propiedades de Arcade Physics
     const body = pelota.body as Phaser.Physics.Arcade.Body;
 
-    // 1. Quitamos la gravedad para que no se caiga al fondo
-    body.setAllowGravity(false);
+    // 1. Desactivamos gravedad para movimiento lineal puro
+    const hasGravity: boolean = false;
+    body.setAllowGravity(hasGravity);
 
-    // 2. Le damos una velocidad inicial (Pixels por segundo)
-    body.setVelocity(300, 200);
+    // 2. Velocidad inicial (píxeles por segundo)
+    const velocityX: number = 300;
+    const velocityY: number = 200;
+    body.setVelocity(velocityX, velocityY);
 
-    // 3. Hacemos que la pantalla sea una caja de cristal de la que no puede salir
-    body.setCollideWorldBounds(true);
+    // 3. Colisión con los límites del mundo (bordes de la pantalla)
+    const shouldCollideWorld: boolean = true;
+    body.setCollideWorldBounds(shouldCollideWorld);
 
-    // 4. Hacemos que sea una pelota de goma perfecta (rebote 1 = 100% de fuerza conservada)
-    body.setBounce(1, 1);
+    // 4. Elasticidad perfecta (conserva el 100% de la energía en el rebote)
+    const fullBounce: number = 1;
+    body.setBounce(fullBounce, fullBounce);
     
-    // NOTA PARA LA PRESENTACIÓN: ¡No hay método update()! El motor de físicas hace todo el trabajo solo.
+    // El motor de físicas se encarga del movimiento sin necesidad de update() manual.
   }
 }
