@@ -23,14 +23,7 @@ const SOUND_PATH: string = '/2025-2026-pai-phaser-joseangel-kyliam-alejandro/ass
  * and muting of background music and sound effects throughout the game.
  */
 export default class MusicScene extends Phaser.Scene {
-  /**
-   * @desc Volume level for background music (0.0 to 1.0 scale).
-   */
   private static readonly BACKGROUND_VOLUME: number = 0.3;
-
-  /**
-   * @desc Reference to the looping background music audio object.
-   */
   private backgroundMusic?: Phaser.Sound.BaseSound;
 
   /**

@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../../colors';
 
 /**
  * @classdesc A static lava sprite representing a hazard obstacle.
@@ -25,20 +26,11 @@ export default class Lava extends Phaser.Physics.Arcade.Sprite {
    * @param y - Vertical spawn position.
    */
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    // Initialize sprite using frame 1 from the main spritesheet
     super(scene, x, y, 'main-sprites', 1);
-
-    // Register sprite as a display object
     scene.add.existing(this);
-    // Enable static physics body (stationary hazard)
     scene.physics.add.existing(this, true);
-
-    // Set visual dimensions
     this.setDisplaySize(32, 32);
-    // Color lava red for hazard indication
-    this.setTint(0xff0000);
-
-    // Synchronize physics body with visual dimensions after resize
+    this.setTint(ColorName.RED);
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();
   }
 }

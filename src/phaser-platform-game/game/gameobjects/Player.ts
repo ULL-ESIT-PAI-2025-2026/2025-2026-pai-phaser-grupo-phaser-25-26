@@ -19,29 +19,10 @@ import MusicScene from '../scenes/music_scene';
  * animation state management, and keyboard-based input handling.
  */
 export default class Player extends Phaser.Physics.Arcade.Sprite {
-  /**
-   * @desc Keyboard input manager for detecting arrow key presses.
-   */
   private keyboardInputCursors: Phaser.Types.Input.Keyboard.CursorKeys;
-
-  /**
-   * @desc Constant velocity applied during horizontal movement.
-   */
   private readonly HORIZONTAL_VELOCITY = 160;
-
-  /**
-   * @desc Constant velocity applied when jumping (upward).
-   */
   private readonly JUMP_VELOCITY = 330;
-
-  /**
-   * @desc Frame rate for running animation sequence.
-   */
   private readonly RUN_ANIMATION_FRAME_RATE = 12;
-
-  /**
-   * @desc Frame rate for idle pose (no animation).
-   */
   private readonly IDLE_ANIMATION_FRAME_RATE = 20;
 
   /**
@@ -51,22 +32,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    * @param y - Initial vertical spawn position.
    */
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    // Initialize sprite with player spritesheet texture
     super(scene, x, y, 'player-sprite');
-
-    // Register sprite as a display object in the scene
     scene.add.existing(this);
-    // Enable physics simulation on this sprite
     scene.physics.add.existing(this);
-
-    // Set visual dimensions and physics properties
     this.setDisplaySize(32, 48);
     this.setCollideWorldBounds(true);
-    
-    // Initialize keyboard input handler
     this.keyboardInputCursors = scene.input.keyboard!.createCursorKeys();
-
-    // Create animation definitions for player movements
     this.initializeAnimations(scene);
   }
 
@@ -75,7 +46,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    * @param scene - The scene containing animation definitions.
    */
   private initializeAnimations(scene: Phaser.Scene): void {
-    // Create "run" animation using first 10 frames of spritesheet
     if (!scene.anims.exists('run')) {
       scene.anims.create({
         key: 'run',
@@ -84,8 +54,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         repeat: -1
       });
     }
-
-    // Create "idle" animation using frame 8
     if (!scene.anims.exists('idle')) {
       scene.anims.create({
         key: 'idle',
@@ -93,8 +61,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         frameRate: this.IDLE_ANIMATION_FRAME_RATE
       });
     }
-
-    // Create "jump" animation using frame 9
     if (!scene.anims.exists('jump')) {
       scene.anims.create({
         key: 'jump',
@@ -110,8 +76,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    */
   update(): void {
     const physicsBody = this.body as Phaser.Physics.Arcade.Body;
-
-    // Handle horizontal movement input
     if (this.keyboardInputCursors.left?.isDown) {
       this.setVelocityX(-this.HORIZONTAL_VELOCITY);
       this.setFlipX(true);
@@ -121,11 +85,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else {
       this.setVelocityX(0);
     }
-
-    // Update animation state based on physics
     this.updateAnimationState(physicsBody);
-
-    // Handle jump input only when player is grounded
     if (this.keyboardInputCursors.up?.isDown && physicsBody.blocked.down) {
       this.setVelocityY(-this.JUMP_VELOCITY);
     }
@@ -136,11 +96,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    * @param physicsBody - The player's Arcade physics body.
    */
   private updateAnimationState(physicsBody: Phaser.Physics.Arcade.Body): void {
-    // If in air, play jump animation
     if (!physicsBody.blocked.down) {
       this.anims.play('jump', true);
     } else {
-      // On ground: switch between run and idle
       if (physicsBody.velocity.x !== 0) {
         this.anims.play('run', true);
       } else {

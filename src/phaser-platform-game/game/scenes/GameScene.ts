@@ -30,8 +30,6 @@ export default class GameScene extends Phaser.Scene {
   private fallingLavaGroup!: Phaser.Physics.Arcade.Group; 
   private exitGroup!: Phaser.Physics.Arcade.StaticGroup;
   private gameTimerEvent?: Phaser.Time.TimerEvent;
-
-  // VARIABLE AÑADIDA: Candado para evitar el Multi-hit al morir
   private isDead: boolean = false;
 
   constructor() {
@@ -62,7 +60,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    // CORRECCIÓN: Reseteamos la muerte al crear/reiniciar la escena
     this.isDead = false;
 
     if (!this.scene.isActive('UIScene')) {
@@ -126,16 +123,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   private handlePlayerDeath(): void {
-    // CORRECCIÓN: Candado activado. Si ya ha muerto en este frame, ignoramos colisiones extra.
     if (this.isDead) return;
     this.isDead = true;
-    
-    // Pausamos las físicas un instante para que no sigan habiendo overlaps mientras se reinicia
     this.physics.pause();
-
-    // Solo quitamos una vida
     gameState.loseLife();
-
     if (gameState.isGameOver()) {
       console.log('Game Over - No vidas restantes');
       this.audioManager.stopBackgroundMusic();

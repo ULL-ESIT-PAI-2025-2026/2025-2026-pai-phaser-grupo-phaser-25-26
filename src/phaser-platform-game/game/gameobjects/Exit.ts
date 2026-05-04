@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../../colors';
 
 /**
  * @classdesc A static exit sprite marking the goal position to complete a level.
@@ -25,18 +26,11 @@ export default class Exit extends Phaser.Physics.Arcade.Sprite {
    * @param y - Vertical spawn position.
    */
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    // Initialize exit sprite (currently using empty texture)
     super(scene, x, y, '');
-
-    // Register sprite as a display object
     scene.add.existing(this);
-    // Enable static physics body
     scene.physics.add.existing(this, true);
-
-    // Set visual dimensions
     this.setDisplaySize(32, 32);
-    // Color exit blue for visibility
-    this.setTint(0x0000ff);
+    this.setTint(ColorName.BLUE);
 
     // Synchronize physics body with visual dimensions after resize
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();

@@ -12,6 +12,7 @@
  */
 
 import * as Phaser from 'phaser';
+import { ColorName } from '../../../colors';
 
 /**
  * @classdesc A static platform wall sprite with fixed physics properties.
@@ -25,20 +26,11 @@ export default class Wall extends Phaser.Physics.Arcade.Sprite {
    * @param y - Vertical spawn position.
    */
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    // Initialize sprite using frame 0 from the main spritesheet
     super(scene, x, y, 'main-sprites', 0);
-
-    // Register sprite as a display object
     scene.add.existing(this);
-    // Enable physics with static body (no gravity, no movement)
     scene.physics.add.existing(this, true); 
-
-    // Set visual dimensions
     this.setDisplaySize(32, 32);
-    // Color the wall slightly dark
-    this.setTint(0x666666);
-
-    // Synchronize physics body with visual dimensions after resize
+    this.setTint(ColorName.GRAY);
     (this.body as Phaser.Physics.Arcade.StaticBody).updateFromGameObject();
   }
 }

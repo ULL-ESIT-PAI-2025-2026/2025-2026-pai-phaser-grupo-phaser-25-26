@@ -42,7 +42,6 @@ export class LevelBuilder {
    * // '@' = Player, '#' = Wall, 'o' = Coin, '!' = Lava, etc.
    */
   static build(scene: Phaser.Scene, levelData: string[]) {
-    // Create physics groups for each object type
     const wallGroup = scene.physics.add.staticGroup();
     const coinGroup = scene.physics.add.staticGroup();
     const staticLavaGroup = scene.physics.add.staticGroup(); 
@@ -51,14 +50,11 @@ export class LevelBuilder {
 
     let playerCharacter!: Player;
 
-    // Parse each character in the level data
     levelData.forEach((rowString, rowIndex) => {
       [...rowString].forEach((tileCharacter, columnIndex) => {
-        // Calculate pixel position (each tile is 32x32)
         const pixelX = columnIndex * 32 + 16;
         const pixelY = rowIndex * 32 + 16;
 
-        // Instantiate appropriate game object based on character
         if (tileCharacter === '@') {
           playerCharacter = new Player(scene, pixelX, pixelY);
         } else if (tileCharacter === '#') {
@@ -88,7 +84,6 @@ export class LevelBuilder {
       scene.cameras.main.startFollow(playerCharacter, true, 0.08, 0.08);
     }
 
-    // Return all constructed level components
     return { 
       player: playerCharacter, 
       walls: wallGroup, 
