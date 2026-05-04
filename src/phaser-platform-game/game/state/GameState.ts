@@ -20,7 +20,6 @@ class GameState {
   public coins: number = 0;
   public secondsElapsed: number = 0;
 
-  // Se ha eliminado el método resetLevel() para evitar duplicidad lógica con loseLife().
 
   resetGame(): void {
     this.lives = 3;
