@@ -15,14 +15,13 @@
   "type": "commonjs",
   "main": "index.js",
   "directories": {
-    "test": "tests",
-    "build": "vite build",
-    "dev": "vite",
-    "preview": "vite preview"
+    "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "phaser": "^4.0.0",
