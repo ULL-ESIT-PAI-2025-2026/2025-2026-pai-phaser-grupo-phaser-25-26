@@ -39,11 +39,9 @@ export function StartGame(containerId: string): void {
       default: 'arcade',
       arcade: {
         gravity: { x: 0, y: 300 },
-        // Enable physics debug visualization for development
-        debug: true
+        debug: false
       }
     },
-    // Register all game scenes in execution order
     scene: [GameScene, UIScene, PauseScene, MusicScene]
   };
 
